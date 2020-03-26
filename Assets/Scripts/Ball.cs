@@ -13,10 +13,10 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-/*
-        bx = Input.acceleration.x;
-        by = Input.acceleration.y;
-*/
+        /*
+                bx = Input.acceleration.x;
+                by = Input.acceleration.y;
+        */
         bx = 0;
         by = 0;
         bz = 0;
@@ -28,8 +28,25 @@ public class Ball : MonoBehaviour
     void Update()
     {
         bx = Input.acceleration.x;
-        
+
         by = by + 0.005f;
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            rb.AddForce(Vector3.forward * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            rb.AddForce(Vector3.back * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            rb.AddForce(Vector3.right * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            rb.AddForce(Vector3.left * speed);
+        }
 
         movement = new Vector3(bx * speed, 0.0f, by);
         rb.AddForce(movement);
@@ -52,3 +69,6 @@ public class Ball : MonoBehaviour
         bz = bz + 0.5f;
     }
 }
+
+
+    
